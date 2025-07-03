@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="https://inst.eecs.berkeley.edu/~cs188/sp20/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://inst.eecs.berkeley.edu/~cs188/sp20/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://inst.eecs.berkeley.edu/~cs188/sp20/favicon-16x16.png">
+    <link rel="manifest" href="https://inst.eecs.berkeley.edu/~cs188/sp20/site.webmanifest">
+    <link rel="mask-icon" href="https://inst.eecs.berkeley.edu/~cs188/sp20/safari-pinned-tab.svg" color="#fdb515">
+    <meta name="apple-mobile-web-app-title" content="CS 188">
+    <meta name="application-name" content="CS 188">
+    <meta name="msapplication-TileColor" content="#3b7ea1">
+    <meta name="msapplication-TileImage" content="https://inst.eecs.berkeley.edu/~cs188/sp20/mstile-144x144.png">
+    <meta name="theme-color" content="#3b7ea1">
+
+  <!-- This project is developed by Berkeley Pacman team, please visit http://ai.berkeley.edu/project_overview.html for more details. -->
+  <!-- The Pac-Man projects were developed primarily by John DeNero and Dan Klein.
+       The autograder development was headed up by Nick Hay, Brad Miller, Dan Klein, and Pieter Abbeel.
+       Many others have contributed to the projects, including Nimar Arora, David Burkett, Jeremy Cowles, 
+       Jeff Donahue, Dan Gillick, Aria Haghighi, Judy Hoffman, Ed Karuna, Jonathan Long, Jeremy Maitin-Shepard, 
+       Barak Michener, Aditi Muralidharan, Adam Pauls, Arjun Singh, and Daniel Urieli. -->
+  <!-- This website was designed by Alvin Wong and Pieter Abbeel. -->
+
+
+  <title>
+    
+      Policies - CS 480: Introduction to Artificial Intelligence, Fall 2022
+    
+  </title>
+
+  <link rel="stylesheet" href="../css/main.css" type="text/css">
+
+  <script src="../js/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="../js/bootstrap-toc.min.js"></script>
+
+
+  <script src="../js/jquery.qtip.min.js" type="text/javascript"></script>
+  <script src="../js/moment.min.js"></script>
+  <script src="../js/fullcalendar.min.js"></script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      CommonHTML: {
+        linebreaks: { automatic: true },
+        scale: 90,
+        preferredFont: "Latin Modern"
+      },
+      "HTML-CSS": {
+        linebreaks: { automatic: true },
+        scale: 90,
+        preferredFont: "Latin Modern"
+      },
+     SVG: {
+       linebreaks: { automatic: true },
+       scale: 90,
+       preferredFont: "Latin Modern"
+     }
+    });
+  </script>
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</head>
+
+
+<body data-spy="scroll" data-target="#toc">
+
+  <div id="navscroll">
+  <nav id="navbar" class="navbar navbar-light navbar-expand-lg align-items-center">
+    <div class="container">
+      <a class="navbar-brand" href="../../index.html" style="color: #000;"><strong>CS 480</strong> | Fall 2022</a>
+      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="navbar-collapse ml-auto collapse" id="navbarSupportedContent" >
+        <ul class="navbar-nav ml-auto">
+    
+          <li class="nav-item"><a href="../../index.html" class="nav-link">Project</a></li>
+        
+          <li class="nav-item"><a href="policies.html" class="nav-link">Policies</a></li>
+        
+          <li class="nav-item"><a class="nav-link" href="https://piazza.com/class/l6xy6jx3bi0jf">Piazza</a></li>
+
+          <li class="nav-item"><a href="https://www.gradescope.com/courses/425872" class="nav-link">Gradescope</a></li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<!-- Return to Top -->
+<a href="javascript:" id="return-to-top"><i class="fas fa-chevron-up"></i></a>
+
+<script>
+  // ===== Scroll to Top ====
+  $(window).scroll(function() {
+    if ($(this).scrollTop() >= 50) {      // If page is scrolled more than 50px
+      $('#return-to-top').fadeIn(200);    // Fade in the arrow
+    } else {
+      $('#return-to-top').fadeOut(200);   // Else fade out the arrow
+    }
+  });
+  $('#return-to-top').click(function() {  // When arrow is clicked
+    $('body,html').animate({
+      scrollTop : 0                       // Scroll to top of body
+    }, 500);
+  });
+</script>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
+<script>var $j = jQuery.noConflict(true);</script>
+<script>
+  $(document).ready(function(){
+    console.log($().jquery); // this prints v1.11.0
+    console.log($j().jquery); // this prints v3.1.0
+  });
+</script>
+<script src="../js/parallax.min.js"></script>
+
+<script src="../js/main.min.js"></script>
+
+
+  <div class='container'>
+    <!-- <div class="alert alert-info">
+  <i class="far fa-exclamation-triangle"></i>
+  <strong>IMPORTANT ANNOUNCEMENT: Please go to DWINELLE 155 for lecture starting from WED Jun 26, 2020)!!!</strong>
+</div> -->
+
+<!-- <div class="alert alert-warning">
+  <i class="far fa-exclamation-triangle"></i>
+  <strong>Warning: Spring 2020 website is under construction.</strong> There may be misleading information from past semesters on this website, which may be different from the Spring 2020 offering of the course. We will remove this warning when the information on this website is accurate.
+</div> -->
+
+<!-- <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="true" data-delay="3800" style="float: left; top: 5em; position: absolute; z-index: 1000">
+  <div class="toast-header">
+    <i class="fal fa-bell"></i>
+    <strong class="mr-auto pl-1">Announcement</strong>
+    <small class="text-white" id="announcementTime"></small>
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="toast-body">
+    <b>Lecture venue for changed AGAIN! Wednesday's (6/26) and future lectures will be held at DWINELLE 155.</b>
+  </div>
+</div> -->
+
+<script>
+  // $('.toast').toast('show')
+  document.getElementById('announcementTime').innerHTML = moment([2020, 5, 25, 21, 35]).fromNow()
+</script>
+
+
+    <script src="../js/calendar.js"></script>
+<script src="../js/gcal.js"></script>
+
+<!-- Start of the schedule table-->
+
+<div class='container'>
+  <!-- <div class="alert alert-info">
+<i class="far fa-exclamation-triangle"></i>
+<strong>IMPORTANT ANNOUNCEMENT: Please go to DWINELLE 155 for lecture starting from WED Jun 26, 2019)!!!</strong>
+</div> -->
+
+<!-- <div class="alert alert-warning">
+<i class="far fa-exclamation-triangle"></i>
+<strong>Warning: Fall 2019 website is under construction.</strong> There may be misleading information from past semesters on this website, which may be different from the Fall 2019 offering of the course. We will remove this warning when the information on this website is accurate.
+</div> -->
+
+<!-- <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="true" data-delay="3800" style="float: left; top: 5em; position: absolute; z-index: 1000">
+<div class="toast-header">
+  <i class="fal fa-bell"></i>
+  <strong class="mr-auto pl-1">Announcement</strong>
+  <small class="text-white" id="announcementTime"></small>
+  <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="toast-body">
+  <b>Lecture venue for changed AGAIN! Wednesday's (6/26) and future lectures will be held at DWINELLE 155.</b>
+</div>
+</div> -->
+
+<script>
+// $('.toast').toast('show')
+document.getElementById('announcementTime').innerHTML = moment([2019, 5, 25, 21, 35]).fromNow()
+</script>
+
+
+<div>
+<a class="anchor" id="policies"></a>
+<h1>Policies</h1>
+
+The best way to contact the staff is through <a href="https://piazza.com/class/l6xy6jx3bi0jf">Piazza</a>. 
+You can also contact the professor or TAs directly, note all emails must end with <b>gmu.edu</b>.
+Please include <b>CS480</b> in your email subject.
+<hr/>
+
+  <h2>Late Policy</h2>
+    <p>Projects lose 10% of their total point value per day turned in late. 
+      However, projects also have slip days which can be used to delay the onset of the late policy. 
+    </p>
+
+  <h2>Collaboration</h2>
+    <p>Project #4 is a group project. You can have up to 2 people in your group. </p> 
+  
+  <h2>Project Slip Days</h2>
+    <p>Programming projects must be turned in electronically by the listed due date and time. 
+      You will have a total of <strong>5 slip days</strong> to be used across 
+      <strong>ALL</strong> projects starting from Project #1 to extend a deadline. 
+      Note that slip days are counted by the granularity of days, rounded up to the nearest day. 
+      For example, if you have yet to use your two slip days: 
+      for a project due at 11:59 pm on Friday, 
+      any submission from Saturday 12:00 am to Saturday 11:59 pm will use up one slip day, 
+      any submission from Sunday 12:00 am to Sunday 11:59 pm will use up two slip days, 
+      and any submissions after Sunday 11:59 pm will begin being penalized by the late policy. 
+      Slip days will be applied to your grades if you submit late and still have any slip days remaining. 
+      So, plan ahead! <br />
+      <strong>Note: you may only use maximum two slip-days per project.</strong>
+    </p>
+
+<hr />
+
+<footer class="py-4 container">
+  <div class="row text-center">
+    <div class="col-md-6 col-sm-12">
+      <h3 data-toc-skip>CS 480</h3>
+      <ul class="nav nav-pills flex-column">
+        <li class="nav-item"><a href="policies.html" class="nav-link">Policies</a>
+        </li>
+        <li class="nav-item"><a href="https://mymasonportal.gmu.edu/ultra/courses/_459700_1/cl/outline" class="nav-link">Blackboard</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-md-6 col-sm-12">
+      <h3 data-toc-skip>Useful Links</h3>
+      <ul class="nav nav-pills flex-column">
+        <li class="nav-item"><a href="https://piazza.com/class/l6xy6jx3bi0jf" class="nav-link">Piazza</a>
+        </li>
+        <li class="nav-item"><a href="https://www.gradescope.com/courses/425872" class="nav-link">Gradescope</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="../js/clipboard.min.js"></script>
+  <script src="../js/codeselect.js"></script>
+</footer>
+  </div>
+
+</body>
+
+<!-- <script>w3.includeHTML();</script> -->
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../js/ie10-viewport-bug-workaround.js"></script>
+
+
+</html>
